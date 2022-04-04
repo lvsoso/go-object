@@ -1,0 +1,99 @@
+version: "3.3"
+
+services:
+  n1:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.2'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.2:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+  n2:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.3'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.3:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+  
+  n3:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.4'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.4:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+
+  n4:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.5'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.5:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+
+  n5:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.6'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.6:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+
+  n6:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.7'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.7:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+
+
+
+
+  rabbitmq:
+    image: docker.io/bitnami/rabbitmq:3.9
+    ports:
+      - '4369:4369'
+      - '5551:5551'
+      - '5552:5552'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_USERNAME=test
+      - RABBITMQ_PASSWORD=test
+      - RABBITMQ_SECURE_PASSWORD=yes
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.8' 
+#     volumes:
+#       - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+# volumes:
+#   rabbitmq_data:
+#     driver: local
+
+networks:
+  go-objest:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.29.1.0/24
