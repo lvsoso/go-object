@@ -33,8 +33,8 @@ func get(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
-	object := url.PathEscape(meta.Hash)
-	stream, e := getStream(object)
+	hash := url.PathEscape(meta.Hash)
+	stream, e := GetStream(hash, meta.Size)
 	if e != nil {
 		log.Println(e)
 		w.WriteHeader(http.StatusNotFound)

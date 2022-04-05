@@ -16,21 +16,34 @@ docker exec -it deploy_n4_1  /bin/bash -c "mkdir /tmp/objects"
 docker exec -it deploy_n5_1  /bin/bash -c "mkdir /tmp/objects"
 docker exec -it deploy_n6_1  /bin/bash -c "mkdir /tmp/objects"
 
+docker exec -it deploy_n7_1  /bin/bash -c "mkdir /tmp/objects"
+
+docker exec -it deploy_n8_1  /bin/bash -c "mkdir /tmp/objects"
+
 docker exec -it deploy_n3_1  /bin/bash -c "mkdir /tmp/temp"
 docker exec -it deploy_n4_1  /bin/bash -c "mkdir /tmp/temp"
 docker exec -it deploy_n5_1  /bin/bash -c "mkdir /tmp/temp"
 docker exec -it deploy_n6_1  /bin/bash -c "mkdir /tmp/temp"
 
+docker exec -it deploy_n7_1  /bin/bash -c "mkdir /tmp/temp"
+
+docker exec -it deploy_n8_1  /bin/bash -c "mkdir /tmp/temp"
+
 docker exec -it deploy_n3_1 apt-get update
 docker exec -it deploy_n4_1 apt-get update
 docker exec -it deploy_n5_1 apt-get update 
-docker exec -it deploy_n6_1 apt-get update 
+docker exec -it deploy_n6_1 apt-get update
+
+docker exec -it deploy_n7_1 apt-get update 
+docker exec -it deploy_n8_1 apt-get update 
 
 docker exec -it deploy_n3_1 apt-get install uuid-runtime -y
 docker exec -it deploy_n4_1 apt-get install uuid-runtime -y
 docker exec -it deploy_n5_1 apt-get install uuid-runtime -y 
 docker exec -it deploy_n6_1 apt-get install uuid-runtime -y 
 
+docker exec -it deploy_n7_1 apt-get install uuid-runtime -y 
+docker exec -it deploy_n8_1 apt-get install uuid-runtime -y 
 ```
 
 ES 
@@ -58,6 +71,10 @@ docker cp ./dataServer/dataServer deploy_n3_1:/
 docker cp ./dataServer/dataServer deploy_n4_1:/
 docker cp ./dataServer/dataServer deploy_n5_1:/
 docker cp ./dataServer/dataServer deploy_n6_1:/
+
+docker cp ./dataServer/dataServer deploy_n7_1:/
+docker cp ./dataServer/dataServer deploy_n8_1:/
+
 ```
 
 start node
@@ -71,6 +88,6 @@ docker exec -it -e LISTEN_ADDRESS=10.29.1.5:12345 deploy_n4_1 ./dataServer
 docker exec -it -e LISTEN_ADDRESS=10.29.1.6:12345 deploy_n5_1 ./dataServer
 docker exec -it -e LISTEN_ADDRESS=10.29.1.7:12345 deploy_n6_1 ./dataServer
 
-docker exec -it -e LISTEN_ADDRESS=10.29.1.2:12345 deploy_n1_1 ./apiServer
-docker exec -it -e LISTEN_ADDRESS=10.29.1.3:12345 deploy_n2_1 ./apiServer
+docker exec -it -e LISTEN_ADDRESS=10.29.1.10:12345 deploy_n7_1 ./dataServer
+docker exec -it -e LISTEN_ADDRESS=10.29.1.11:12345 deploy_n8_1 ./dataServer
 ```

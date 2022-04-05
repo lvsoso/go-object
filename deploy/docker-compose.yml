@@ -68,6 +68,28 @@ services:
       - STORAGE_ROOT=/tmp/
       - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
 
+  n7:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.10'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.10:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+
+  n8:
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "sleep 180000s"]
+    networks:
+      go-objest:
+        ipv4_address: '10.29.1.11'
+    environment:
+      - LISTEN_ADDRESS=10.29.1.11:12345
+      - STORAGE_ROOT=/tmp/
+      - RABBITMQ_SERVER=amqp://test:test@rabbitmq:5672
+    
   rabbitmq:
     image: docker.io/bitnami/rabbitmq:3.9
     ports:
