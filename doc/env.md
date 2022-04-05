@@ -71,7 +71,6 @@ docker cp ./dataServer/dataServer deploy_n3_1:/
 docker cp ./dataServer/dataServer deploy_n4_1:/
 docker cp ./dataServer/dataServer deploy_n5_1:/
 docker cp ./dataServer/dataServer deploy_n6_1:/
-
 docker cp ./dataServer/dataServer deploy_n7_1:/
 docker cp ./dataServer/dataServer deploy_n8_1:/
 

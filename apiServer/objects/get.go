@@ -1,7 +1,9 @@
 package objects
 
 import (
+	"fmt"
 	"go-object/lib/es"
+	"go-object/lib/utils"
 	"io"
 	"log"
 	"net/http"
@@ -40,5 +42,12 @@ func get(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
+	offset := utils.GetOffsetFromHeader(r.Header)
+	if offset != 0 {
+		stream.Seek(offset, io.SeekCurrent)
+		w.Header().Set("content-range", fmt.Sprintf("bytes %d-%d/%d", offset, meta.Size-1, meta.Size))
+		w.WriteHeader(http.StatusPartialContent)
+	}
 	io.Copy(w, stream)
+	stream.Close()
 }
