@@ -16,6 +16,21 @@ docker exec -it deploy_n4_1  /bin/bash -c "mkdir /tmp/objects"
 docker exec -it deploy_n5_1  /bin/bash -c "mkdir /tmp/objects"
 docker exec -it deploy_n6_1  /bin/bash -c "mkdir /tmp/objects"
 
+docker exec -it deploy_n3_1  /bin/bash -c "mkdir /tmp/temp"
+docker exec -it deploy_n4_1  /bin/bash -c "mkdir /tmp/temp"
+docker exec -it deploy_n5_1  /bin/bash -c "mkdir /tmp/temp"
+docker exec -it deploy_n6_1  /bin/bash -c "mkdir /tmp/temp"
+
+docker exec -it deploy_n3_1 apt-get update
+docker exec -it deploy_n4_1 apt-get update
+docker exec -it deploy_n5_1 apt-get update 
+docker exec -it deploy_n6_1 apt-get update 
+
+docker exec -it deploy_n3_1 apt-get install uuid-runtime -y
+docker exec -it deploy_n4_1 apt-get install uuid-runtime -y
+docker exec -it deploy_n5_1 apt-get install uuid-runtime -y 
+docker exec -it deploy_n6_1 apt-get install uuid-runtime -y 
+
 ```
 
 ES 
