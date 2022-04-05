@@ -15,19 +15,22 @@ docker exec -it deploy_n3_1  /bin/bash -c "mkdir /tmp/objects"
 docker exec -it deploy_n4_1  /bin/bash -c "mkdir /tmp/objects"
 docker exec -it deploy_n5_1  /bin/bash -c "mkdir /tmp/objects"
 docker exec -it deploy_n6_1  /bin/bash -c "mkdir /tmp/objects"
-
 docker exec -it deploy_n7_1  /bin/bash -c "mkdir /tmp/objects"
-
 docker exec -it deploy_n8_1  /bin/bash -c "mkdir /tmp/objects"
 
 docker exec -it deploy_n3_1  /bin/bash -c "mkdir /tmp/temp"
 docker exec -it deploy_n4_1  /bin/bash -c "mkdir /tmp/temp"
 docker exec -it deploy_n5_1  /bin/bash -c "mkdir /tmp/temp"
 docker exec -it deploy_n6_1  /bin/bash -c "mkdir /tmp/temp"
-
 docker exec -it deploy_n7_1  /bin/bash -c "mkdir /tmp/temp"
-
 docker exec -it deploy_n8_1  /bin/bash -c "mkdir /tmp/temp"
+
+docker exec -it deploy_n3_1  /bin/bash -c "mkdir /tmp/garbage"
+docker exec -it deploy_n4_1  /bin/bash -c "mkdir /tmp/garbage"
+docker exec -it deploy_n5_1  /bin/bash -c "mkdir /tmp/garbage"
+docker exec -it deploy_n6_1  /bin/bash -c "mkdir /tmp/garbage"
+docker exec -it deploy_n7_1  /bin/bash -c "mkdir /tmp/garbage"
+docker exec -it deploy_n8_1  /bin/bash -c "mkdir /tmp/garbage"
 
 docker exec -it deploy_n3_1 apt-get update
 docker exec -it deploy_n4_1 apt-get update
@@ -63,6 +66,18 @@ cd ./apiServer
 go build
 cd -
 
+cd ./deleteOldMetadata
+go build
+cd -
+
+cd ./deleteOrphanObject
+go build
+cd -
+
+cd ./objectScanner
+go build
+cd -
+
 
 docker cp ./apiServer/apiServer deploy_n1_1:/
 docker cp ./apiServer/apiServer deploy_n2_1:/
@@ -73,6 +88,16 @@ docker cp ./dataServer/dataServer deploy_n5_1:/
 docker cp ./dataServer/dataServer deploy_n6_1:/
 docker cp ./dataServer/dataServer deploy_n7_1:/
 docker cp ./dataServer/dataServer deploy_n8_1:/
+
+docker cp ./deleteOldMetadata/deleteOldMetadata deploy_n1_1:/
+
+
+docker cp ./deleteOrphanObject/deleteOrphanObject deploy_n3_1:/
+docker cp ./deleteOrphanObject/deleteOrphanObject deploy_n4_1:/
+docker cp ./deleteOrphanObject/deleteOrphanObject deploy_n5_1:/
+docker cp ./deleteOrphanObject/deleteOrphanObject deploy_n6_1:/
+docker cp ./deleteOrphanObject/deleteOrphanObject deploy_n7_1:/
+docker cp ./deleteOrphanObject/deleteOrphanObject deploy_n8_1:/
 
 ```
 
@@ -90,3 +115,7 @@ docker exec -it -e LISTEN_ADDRESS=10.29.1.7:12345 deploy_n6_1 ./dataServer
 docker exec -it -e LISTEN_ADDRESS=10.29.1.10:12345 deploy_n7_1 ./dataServer
 docker exec -it -e LISTEN_ADDRESS=10.29.1.11:12345 deploy_n8_1 ./dataServer
 ```
+
+
+
+

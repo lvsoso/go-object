@@ -1,3 +1,6 @@
 apiServer/apiServer
 dataServer/dataServer
 rabbitmqadmin
+deleteOrphanObject/deleteOrphanObject
+deleteOldMetadata/deleteOldMetadata
+objectScanner/objectScanner
